@@ -1,4 +1,7 @@
+'use strict';
+
 const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
+
 const personalMovieDB = {
     count: numberOfFilms,
     movies: {},
@@ -9,20 +12,15 @@ const personalMovieDB = {
 
 for (let a = 0; a < 2; a++) {
     const nameFilm = prompt("Один из последних просмотренных фильмов?", "");
-    console.log(a, 'new');
     if (!nameFilm || nameFilm.length > 50) {
         a--;
-        console.log('continue 1');
         continue;
     } else {
-        console.log('yes name');
         const rating = prompt("На сколько оцените фильм?", '');
-        if (!rating) {
+        if (rating == null || rating == '') {
             a--;
-            console.log('continue 2');
             continue;
         } else {
-            console.log('yes rait');
             personalMovieDB.movies[nameFilm] = rating;
         }         
     }
@@ -39,4 +37,3 @@ if (personalMovieDB.count < 10) {
 }
 
 console.log(personalMovieDB);
-
