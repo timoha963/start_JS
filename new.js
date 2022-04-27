@@ -7,10 +7,13 @@ const personalMovieDB = {
     privat: false
 };
 
-const nameFilm = prompt("Один из последних просмотренных фильмов?", "");
-const rezFilm = prompt("На сколько оцените фильм?", '');
-personalMovieDB.movies = {
-    nameFilm: rezFilm
-};
+const a = prompt("Один из последних просмотренных фильмов?", ""),
+      b = prompt("На сколько оцените фильм?", ''),
+      c = prompt("Один из последних просмотренных фильмов?", ""),
+      d = prompt("На сколько оцените фильм?", '');
 
+personalMovieDB.movies[a] = b;
+personalMovieDB.movies[c] = d;
+
+console.log(personalMovieDB)
 
