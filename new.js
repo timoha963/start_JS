@@ -63,4 +63,5 @@ function writeYourGenres() {
     
 }
 
+writeYourGenres();
 showMyDB();
