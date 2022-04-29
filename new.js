@@ -1,22 +1,16 @@
-let numberOfFilms;
-
-function start() {
-    numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?", "");
-
-}
-
-start();
-
 const personalMovieDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
     privat: false,
+    start: function () {
+        personalMovieDB.count = +prompt("Сколько фильмов вы уже посмотрели?", "");
+    },
     rememberMyFilms: function(){
         for (let a = 0; a < 2; a++) {
-            const nameFilm = prompt("Один из последних просмотренных фильмов?", "");
-            if (!nameFilm || nameFilm.length > 50) {
+            personalMovieDB.count = prompt("Один из последних просмотренных фильмов?", "");
+            if (!personalMovieDB.count || personalMovieDB.count.length > 50) {
                 a--;
                 continue;
             } else {
@@ -50,13 +44,17 @@ const personalMovieDB = {
     },
     writeYourGenres: function() {
         for (let i = 1; i <= 3; i++) {
-            const likeGenres = prompt(`Ваш любимый жанр под номером ${i}?`, '');
-            if (likeGenres) {
-                personalMovieDB.genres[i-1] = likeGenres;
-            } else {i--;}   
+            let genres = prompt(`Введите ваши любимые жанры через запятую`, '');
+            if (genres === '' || genres == null) {
+                console.log('no true');
+                i--;
+            } else {
+                personalMovieDB.genres  = genres.split(', ');
+                personalMovieDB.genres.sort();
+            }   
         }
-        personalMovieDB.genres.forEach(function(value, index){
-            console.log(`Любимый жанр #${index + 1} - это ${value}`);
+        personalMovieDB.genres.forEach((value, index) => {
+            console.log(`Любимый жанр ${index + 1} - это ${value}`);
         });
     },
     toggleVisibleMyDB: function() {
@@ -64,9 +62,3 @@ const personalMovieDB = {
     }
 
 };
-
-personalMovieDB.rememberMyFilms();
-personalMovieDB.showMyDB(personalMovieDB.privat);
-personalMovieDB.toggleVisibleMyDB();
-personalMovieDB.showMyDB(personalMovieDB.privat);
-personalMovieDB.writeYourGenres();
